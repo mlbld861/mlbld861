@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>sessionStorage</title>
+</head>
+<body>
+<button onclick="saveData()">点我保存一个数据</button>
+</body>
+<script type="text/javascript">
+    let p={name:'张三',age:18}
+    function saveData() {
+        sessionStorage.setItem('mlbld','wzh')
+        sessionStorage.setItem('mlbld1',JSON.stringify(p))
+        const s=sessionStorage.getItem('mlbld1')
+        console.log(JSON.parse(s))
+    }
+
+</script>
+</html>

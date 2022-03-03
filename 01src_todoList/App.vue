@@ -8,15 +8,14 @@
                :checkTodo="checkTodo"
                :deleteTodo="deleteTodo"></MyList>
        <MyFooter :todos="todos"
-                 @checkAllTodo="checkAllTodo"
-                 @clearTodos="clearTodos"></MyFooter>
+                 :checkAllTodo="checkAllTodo"
+                 :clearTodos="clearTodos"></MyFooter>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import pubsub from "pubsub-js";
   import MyList from "@/components/MyList";
   import MyFooter from "@/components/MyFooter";
   import MyHeader from "@/components/MyHeader";
@@ -38,7 +37,7 @@
             if (todo.id===id)todo.done=!todo.done
           })
       },
-      deleteTodo(_,id){
+      deleteTodo(id){
         this.todos=this.todos.filter(todo=>{return todo.id!==id})
       },
       checkAllTodo(x){
@@ -51,12 +50,6 @@
             return !todo.done
           }))
       }
-    },
-    mounted() {
-      this.pid=pubsub.subscribe('deleteTodo',this.deleteTodo)
-    },
-    beforeDestroy() {
-      pubsub.unsubscribe(this.pid)
     },
     watch:{
       todos:{
